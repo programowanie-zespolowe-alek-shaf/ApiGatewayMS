@@ -49,9 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().csrfTokenRepository(new HttpSessionCsrfTokenRepository())
                 .and().authorizeRequests().anyRequest().authenticated().and().httpBasic()
-                .and().logout().logoutUrl("/logout"); //POST method
+                .and().logout().logoutUrl("/api/logout"); //POST method
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
