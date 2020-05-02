@@ -11,11 +11,15 @@ env:
 
 language: java
 
-jdk: 
+jdk:
   - openjdk11
 
 services:
   - docker
+
+before_install:
+  # Substitute missing fields in YAML file
+  - ./replace-tokens.py svc-and-deployment.yaml
 
 script:
   ## CI
@@ -39,8 +43,7 @@ script:
   - gcloud auth activate-service-account --key-file <(echo $GCLOUD_CREDS | base64 -d) || travis_terminate 1
   # Authenticate kubectl
   - gcloud container clusters get-credentials $CLUSTER --zone $CLUSTER_ZONE --project $(echo $GCLOUD_CREDS | base64 -d | jq -r .project_id) || travis_terminate 1
-  # Substitute missing fields in YAML file
-  - ./substitute_fields.py svc-and-deployment.yaml
+
   # Deploy service and k8s deployment
   - ./kubectl apply -f svc-and-deployment.yaml || travis_terminate 1
   # Wait till completion; report error in case of timeout
