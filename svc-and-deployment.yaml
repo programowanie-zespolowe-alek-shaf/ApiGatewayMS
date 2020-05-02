@@ -2,20 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-gateway
+  name: __REPO_NAME__
 spec:
   selector:
     matchLabels:
-      app: api-gateway
+      app: __REPO_NAME__
   replicas: 1
   template:
     metadata:
       labels:
-        app: api-gateway
+        app: __REPO_NAME__
     spec:
       containers:
-        - name: api-gateway
-          image: 553377995899929464339267475442/api-gateway
+        - name: __REPO_NAME__
+          image: __DOCKER_HUB_USERNAME__/__REPO_NAME__:latest
           ports:
             - containerPort: 8080
           env:
@@ -26,11 +26,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-gateway
+  name: __REPO_NAME__
 spec:
   type: NodePort
   selector:
-    app: api-gateway
+    app: __REPO_NAME__
   ports:
     - protocol: TCP
       port: 80
