@@ -17,13 +17,7 @@ jdk:
 services:
   - docker
 
-install:
-  - echo install
-
 script:
-  - python --version
-  - python3 --version
-  - travis_terminate 0
   ## CI
   # Run UTs
   - mvn test -B || travis_terminate 1
@@ -46,9 +40,9 @@ script:
   # Authenticate kubectl
   - gcloud container clusters get-credentials $CLUSTER --zone $CLUSTER_ZONE --project $(echo $GCLOUD_CREDS | base64 -d | jq -r .project_id) || travis_terminate 1
   # Substitute missing fields in YAML file
-  - ./substitute_fields.sh svc-and-deployment.yaml
+  - ./substitute_fields.py svc-and-deployment.yaml
   # Deploy service and k8s deployment
   - ./kubectl apply -f svc-and-deployment.yaml || travis_terminate 1
   # Wait till completion; report error in case of timeout
-  # ASSUMPTION!!! deployment.name in YAML file == "$REPO_NAME"
+  # ASSUMPTION! deployment.name field in YAML file must match "$REPO_NAME"
   - ./kubectl rollout status deployment "$REPO_NAME" --timeout=120s || travis_terminate 1
