@@ -19,7 +19,7 @@ services:
 
 before_install:
   # Substitute missing fields in YAML file
-  - ./replace-tokens.py svc-and-deployment.yaml
+  - python3 replace-tokens.py svc-and-deployment.yaml
 
 script:
   ## CI
