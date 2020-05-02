@@ -16,6 +16,7 @@ spec:
       containers:
         - name: __REPO_NAME__
           image: __DOCKER_HUB_USERNAME__/__REPO_NAME__:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
