@@ -17,16 +17,14 @@ jdk:
 services:
   - docker
 
-before_install:
-  # Substitute missing fields in YAML file
-  - python3 replace-tokens.py svc-and-deployment.yaml
-
 script:
   ## CI
   # Run UTs
   - mvn test -B || travis_terminate 1
   # Trigger CD if not PR and master branch otherwise finish
   - '[ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ] || travis_terminate 0'
+  # Substitute missing fields in YAML file
+  - python3 replace-tokens.py svc-and-deployment.yaml || travis_terminate 1
   # Build Docker image
   - docker build -t "$DOCKER_HUB_USERNAME/$REPO_NAME:$TRAVIS_COMMIT" . || travis_terminate 1
   - docker tag "$DOCKER_HUB_USERNAME/$REPO_NAME:$TRAVIS_COMMIT" "$DOCKER_HUB_USERNAME/$REPO_NAME:latest" || travis_terminate 1
