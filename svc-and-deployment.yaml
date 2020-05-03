@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: __REPO_NAME__
-          image: __DOCKER_HUB_USERNAME__/__REPO_NAME__:latest
+          image: __DOCKER_HUB_USERNAME__/__REPO_NAME__:__TRAVIS_COMMIT__
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
