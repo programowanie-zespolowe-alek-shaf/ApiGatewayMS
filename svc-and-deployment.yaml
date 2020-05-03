@@ -21,19 +21,19 @@ spec:
             - containerPort: 8080
           env:
             - name: MYSQL_DB_HOST
-              value: __MYSQL_DB_HOST__
+              value: "__MYSQL_DB_HOST__"
             - name: MYSQL_DB_PORT
-              value: __MYSQL_DB_PORT__
+              value: "__MYSQL_DB_PORT__"
             - name: MYSQL_DATABASE
-              value: __MYSQL_DATABASE__
+              value: "__MYSQL_DATABASE__"
             - name: MYSQL_DB_USERNAME
-              value: __MYSQL_DB_USERNAME__
+              value: "__MYSQL_DB_USERNAME__"
             - name: MYSQL_DB_PASSWORD
-              value: __MYSQL_DB_PASSWORD__
+              value: "__MYSQL_DB_PASSWORD__"
 #            - name: EUREKA_HOST
-#              value: __EUREKA_HOST__
+#              value: ...
 #            - name: EUREKA_PORT
-#              value: __EUREKA_PORT__
+#              value: ...
 ---
 # Service
 apiVersion: v1
