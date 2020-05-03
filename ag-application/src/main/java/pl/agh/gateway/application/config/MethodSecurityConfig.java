@@ -19,12 +19,13 @@ public class MethodSecurityConfig extends GlobalMethodSecurityConfiguration {
         return new JwtConfig();
     }
 
+    @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .exposedHeaders("X-CSRF-Token", "Content-Type")
+                        .exposedHeaders("X-CSRF-Token", "Content-Type", "Authorization")
                         .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH")
                         .allowedOrigins("*");
             }
