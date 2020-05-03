@@ -2,6 +2,7 @@
 ## DOCKER_HUB_USERNAME
 ## DOCKER_HUB_PASSWORD
 ## GCLOUD_CREDS as base64
+# all other __FIELDS__ in k8s deployment file
 
 env:
   global:

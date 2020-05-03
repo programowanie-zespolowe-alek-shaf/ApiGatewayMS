@@ -1,4 +1,4 @@
-# ApiGateway Deployment
+# Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,22 +20,22 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: MYSQL_CUSTOMER_DB_HOST
-              value: __MYSQL_CUSTOMER_DB_HOST__
-            - name: MYSQL_CUSTOMER_DB_PORT
-              value: __MYSQL_CUSTOMER_DB_PORT__
-            - name: MYSQL_CUSTOMER_DATABASE
-              value: __MYSQL_CUSTOMER_DATABASE__
-            - name: MYSQL_CUSTOMER_DB_USERNAME
-              value: __MYSQL_CUSTOMER_DB_USERNAME__
-            - name: MYSQL_CUSTOMER_DB_PASSWORD
-              value: __MYSQL_CUSTOMER_DB_PASSWORD__
-            - name: EUREKA_HOST
-              value: __EUREKA_HOST__
-            - name: EUREKA_PORT
-              value: __EUREKA_PORT__
+            - name: MYSQL_DB_HOST
+              value: __MYSQL_DB_HOST__
+            - name: MYSQL_DB_PORT
+              value: __MYSQL_DB_PORT__
+            - name: MYSQL_DATABASE
+              value: __MYSQL_DATABASE__
+            - name: MYSQL_DB_USERNAME
+              value: __MYSQL_DB_USERNAME__
+            - name: MYSQL_DB_PASSWORD
+              value: __MYSQL_DB_PASSWORD__
+#            - name: EUREKA_HOST
+#              value: __EUREKA_HOST__
+#            - name: EUREKA_PORT
+#              value: __EUREKA_PORT__
 ---
-# ApiGateway Service
+# Service
 apiVersion: v1
 kind: Service
 metadata:
