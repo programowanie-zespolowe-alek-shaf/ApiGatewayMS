@@ -11,7 +11,7 @@ import java.security.Principal;
 @RestController
 public class LoginController {
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/login", method = RequestMethod.GET)
     public ResponseEntity<String> login(Principal principal, HttpSession session) {
         if (!session.isNew()) {
             session.invalidate();
