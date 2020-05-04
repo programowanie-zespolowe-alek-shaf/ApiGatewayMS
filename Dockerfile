@@ -3,13 +3,10 @@ WORKDIR app
 COPY ag-application ./ag-application
 COPY pom.xml ./
 
-ENV MYSQL_DB_HOST name
-ENV MYSQL_DB_PORT 3306
-ENV MYSQL_DATABASE customer
-ENV MYSQL_DB_USERNAME customer
-ENV MYSQL_DB_PASSWORD customer
-ENV EUREKA_HOST name
-ENV EUREKA_PORT 8761
+ENV ORDER_MS_URL http://order-service:8080
+ENV PRODUCT_MS_URL http://product-service:8080
+ENV CUSTOMER_MS_URL http://customer-service:8080
+ENV CART_MS_URL http://cart-service:8080
 
 RUN mvn clean install -DskipTests -P prod
 RUN mv ag-application/target/*.jar app.jar
