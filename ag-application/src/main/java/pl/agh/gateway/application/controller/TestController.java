@@ -15,7 +15,7 @@ public class TestController {
         return ResponseEntity.ok("Logged: " + principal.getName());
     }
 
-    @RequestMapping(value = "/health", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ResponseEntity<Integer> healthCheck() {
         return ResponseEntity.ok(1);
     }
