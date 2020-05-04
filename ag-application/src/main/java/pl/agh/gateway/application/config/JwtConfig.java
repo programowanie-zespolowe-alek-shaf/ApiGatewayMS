@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Data
 public class JwtConfig {
-    @Value("${security.jwt.uri:/api/login-ms/login/**}")
+    @Value("${security.jwt.uri:/api/customers-ms/login/**}")
     private String Uri;
 
     @Value("${security.jwt.header:Authorization}")
