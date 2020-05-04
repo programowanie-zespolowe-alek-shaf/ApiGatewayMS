@@ -8,10 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-public class LoginController {
+public class TestController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public ResponseEntity<String> login(Principal principal) {
+    public ResponseEntity<String> currentUser(Principal principal) {
         return ResponseEntity.ok("Logged: " + principal.getName());
+    }
+
+    @RequestMapping(value = "/health", method = RequestMethod.GET)
+    public ResponseEntity<Integer> healthCheck() {
+        return ResponseEntity.ok(1);
     }
 }
