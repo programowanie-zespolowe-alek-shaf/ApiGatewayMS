@@ -29,7 +29,7 @@ spec:
             - name: CART_MS_URL
               value: __CART_MS_URL__
             -name: __PAYMENT_MS_URL__
-              value: __PAYMENT_MS_URL__
+              value: PAYMENT_MS_URL
 ---
 # Service
 apiVersion: v1
