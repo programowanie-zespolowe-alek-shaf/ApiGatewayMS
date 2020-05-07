@@ -28,7 +28,7 @@ spec:
               value: __CUSTOMER_MS_URL__
             - name: CART_MS_URL
               value: __CART_MS_URL__
-            -name: __PAYMENT_MS_URL__
+            - name: __PAYMENT_MS_URL__
               value: PAYMENT_MS_URL
 ---
 # Service
