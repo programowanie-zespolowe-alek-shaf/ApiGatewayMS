@@ -37,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(POST, jwtConfig.getUri()).permitAll()
                 .antMatchers(GET, "/").permitAll()
+                .antMatchers("/api/shopping-card-ms/**").permitAll() // TODO delete
                 .anyRequest().authenticated();
     }
 
