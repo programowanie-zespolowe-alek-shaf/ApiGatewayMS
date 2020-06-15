@@ -5,7 +5,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
-import pl.agh.shopping.card.application.config.JwtConfig;
+import pl.agh.gateway.application.config.JwtConfig;
 
 import java.io.IOException;
 

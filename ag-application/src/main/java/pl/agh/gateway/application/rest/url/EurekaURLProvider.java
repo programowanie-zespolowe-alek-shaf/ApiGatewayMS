@@ -6,7 +6,7 @@ import com.netflix.discovery.shared.Application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-import pl.agh.shopping.card.application.rest.MicroService;
+import pl.agh.gateway.application.rest.MicroService;
 
 @Component
 @Profile("localhost")
