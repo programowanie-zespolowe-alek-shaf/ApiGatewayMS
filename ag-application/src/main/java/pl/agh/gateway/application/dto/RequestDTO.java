@@ -10,7 +10,6 @@ import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
 
 @Data
-@Builder
 @NoArgsConstructor
 public class RequestDTO {
 
