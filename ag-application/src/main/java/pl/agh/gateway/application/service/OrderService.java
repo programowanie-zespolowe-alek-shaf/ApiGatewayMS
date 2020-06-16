@@ -7,6 +7,7 @@ import pl.agh.gateway.application.rest.MicroService;
 import pl.agh.gateway.application.rest.RestClient;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 @Service
@@ -21,7 +22,7 @@ public class OrderService {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("address", address);
         jsonObject.put("shoppingCardId", shoppingCardId);
-        jsonObject.put("shipDate", shipDate);
+        jsonObject.put("shipDate", shipDate.format(DateTimeFormatter.ofPattern("yy-MM-dd")));
         return restClient.post(MicroService.ORDER_MS, "/orders/", jsonObject, Map.class);
     }
 
