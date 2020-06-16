@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(POST, jwtConfig.getUri()).permitAll()
                 .antMatchers(GET, "/").permitAll()
                 .antMatchers("/api/shopping-card-ms/**").permitAll() // TODO delete
+                .antMatchers("/actuator/**").hasRole("ROLE_ADMIN")
                 .anyRequest().authenticated();
     }
 
