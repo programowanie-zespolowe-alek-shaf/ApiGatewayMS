@@ -70,6 +70,6 @@ public class OrderController {
                 .path(MicroService.CART_MS + "/shopping-card-ms/{id}")
                 .buildAndExpand(newShoppingCard.getOrDefault("id", ""))
                 .toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(newShoppingCard);
     }
 }
