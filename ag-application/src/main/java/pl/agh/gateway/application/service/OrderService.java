@@ -22,7 +22,7 @@ public class OrderService {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("address", address);
         jsonObject.put("shoppingCardId", shoppingCardId);
-        jsonObject.put("shipDate", shipDate.format(DateTimeFormatter.ofPattern("yy-MM-dd")));
+        jsonObject.put("shipDate", shipDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         return restClient.post(MicroService.ORDER_MS, "/orders/", jsonObject, Map.class);
     }
 
