@@ -22,7 +22,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/finalizeOrder")
+@RequestMapping("/api/finalizeOrder")
 public class OrderController {
 
     private final RestClient restClient;
