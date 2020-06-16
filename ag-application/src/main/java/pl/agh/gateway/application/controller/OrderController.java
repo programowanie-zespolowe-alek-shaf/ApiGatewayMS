@@ -17,6 +17,7 @@ import pl.agh.gateway.application.util.ListResponse;
 import javax.validation.Valid;
 
 import java.net.URI;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -33,14 +34,14 @@ public class OrderController {
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> completeOrder(@RequestBody @Valid RequestDTO requestDTO) {
         Map<String, Object> currentCard = restClient.get(MicroService.CART_MS, "/shoppingCards/" + requestDTO.getShoppingCardID(), Map.class);
-        String username = (String) currentCard.getOrDefault("username", "NoName");
-        if ("NoName".equals(username)) {
+        String username = (String) currentCard.getOrDefault("username", "AnonymousUser");
+        if ("AnonymousUser".equals(username)) {
             return ResponseEntity.notFound().build();
         }
 
         //get total value from currentCard and create Transaction
-        ListResponse itemList = (ListResponse) currentCard.getOrDefault("items", "dupa");
-        double totalValue = itemList.getTotalValue();
+        Map itemList = (LinkedHashMap) currentCard.getOrDefault("items", null);
+        double totalValue = (double) (itemList.getOrDefault("totalValue", -1.));
         orderService.createTransaction(requestDTO.getShoppingCardID(),
                 (float) totalValue,
                 requestDTO.getCouponCode()
