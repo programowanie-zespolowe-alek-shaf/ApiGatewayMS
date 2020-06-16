@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import pl.agh.gateway.application.rest.token.TokenHolder;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,6 +25,7 @@ import static org.springframework.http.HttpMethod.POST;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtConfig jwtConfig;
+    private final TokenHolder tokenHolder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -33,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
-                .addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new JwtTokenAuthenticationFilter(jwtConfig, tokenHolder), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(POST, jwtConfig.getUri()).permitAll()
                 .antMatchers(GET, "/").permitAll()
