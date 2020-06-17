@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
+import pl.agh.gateway.application.rest.token.TokenHolder;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtConfig jwtConfig;
+    private final TokenHolder tokenHolder;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -34,6 +36,7 @@ public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
         }
 
         String token = header.replace(jwtConfig.getPrefix(), "");
+        tokenHolder.setToken(token);
 
         try {
 
